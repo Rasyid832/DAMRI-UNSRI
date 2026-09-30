@@ -1,0 +1,27 @@
+{
+  "name": "damri-unsri",
+  "version": "1.0.0",
+  "description": "MBG",
+  "main": "index.js",
+  "scripts": {
+    "DAMRI" : "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rasyid832/DAMRI-UNSRI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rasyid832/DAMRI-UNSRI/issues"
+  },
+  "homepage": "https://github.com/Rasyid832/DAMRI-UNSRI#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3"
+  }
+}

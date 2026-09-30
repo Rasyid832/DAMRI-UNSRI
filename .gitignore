@@ -1,0 +1,10 @@
+node_modules/
+.htmlnanorc
+.pnpm-debug.log
+dist/
+build/
+*.log
+error_log
+koneksi.php
+config.php
+.env
