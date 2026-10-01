@@ -26,8 +26,8 @@ $(".klikIndralya").on("click", () => {
             
             <!-- Top Header -->
             <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center space-x-3">
-                    <img src="../images/logo_damri.png" alt="Logo DAMRI UNSRI" class="h-8 md:h-10 object-contain">
+                <div class="flex items-center h-[30px] gap-[10px]">
+                    <img src="../images/logo_damri.png" alt="Logo DAMRI UNSRI" class="h-[310px] w-[90px] object-contain">
                     <div class="h-6 w-[2px] bg-slate-300"></div>
                     <span class="text-blue-900 font-extrabold text-xl tracking-wider">UNSRI</span>
                 </div>
@@ -159,8 +159,8 @@ $(".klikPlg").on("click",()=>{
             
             <!-- Top Header -->
             <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center space-x-3">
-                    <img src="../images/logo_damri.png" alt="Logo DAMRI UNSRI" class="h-8 md:h-10 object-contain">
+                <div class="flex items-center h-[30px] gap-[10px]">
+                    <img src="../images/logo_damri.png" alt="Logo DAMRI UNSRI" class="h-[310px] w-[90px] object-contain">
                     <div class="h-6 w-[2px] bg-slate-300"></div>
                     <span class="text-blue-900 font-extrabold text-xl tracking-wider">UNSRI</span>
                 </div>
