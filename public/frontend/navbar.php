@@ -10,7 +10,7 @@
         <div class="wrapper">
             <div class="logoPart">
                 <div class="kontainerLogo">
-                    <img src = "./images/logo_damri.png" class= "">
+                    <img src = "../images/logo_damri.png" class= "">
                 </div>
                 <h2 class="txtLogo">DAMRI<span>UNSRI</span></h2>
             </div>
