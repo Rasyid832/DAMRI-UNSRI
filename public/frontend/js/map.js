@@ -3,8 +3,8 @@ const slider = document.querySelector(".wrapperSlider");
 const cardRoute = document.querySelectorAll(".card");
 const koordinat = document.querySelector(".Koordinat");
 const btn = document.querySelector(".back_to_location");
-const map = L.map(document.querySelector(".map")).setView([0,0],5);
 
+const map = L.map(document.querySelector(".map")).setView([0,0],5);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
     maxZoom : 19,
     attribution : '© OpenStreetMap' 
