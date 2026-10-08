@@ -1,16 +1,13 @@
+<?php $pageTitle = 'DAMRI UNSRI'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src = "https://cdn.tailwindcss.com"></script>
+    <?php include 'head.php'; ?>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <style>
-        
-    </style>
 </head>
+
+    
 <body>
     <navbar class="nav w-[100%] h-[100px] flex justify-center items-center bg-red-700 mt-[20px]">
         <div class="wrapper w-[90%] h-[100%] bg-blue-600 flex justify-center items-center">
@@ -36,6 +33,6 @@
     </section>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src = "script.js"></script>
+    <script src = "js/map.js"></script>
 </body>
 </html> 
