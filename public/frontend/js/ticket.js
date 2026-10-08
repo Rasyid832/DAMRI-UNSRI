@@ -1,7 +1,7 @@
 const kontainer = $(".mainKontainer");
 let kode_pemberangkatan = "";
 
-// Fungsi Render Barcode
+
 function renderBarcode(targetSelector, value) {
     JsBarcode(targetSelector, value, {
         format: "CODE128",
@@ -139,11 +139,7 @@ $(".klikIndralya").on("click", () => {
             </div>
         </div>
     </div>`;
-
-    // 1. Inject HTML ke DOM terlebih dahulu
     kontainer.html(card);
-
-    // 2. Render Barcode setelah elemen #barcode sudah ada di DOM
     renderBarcode("#barcode", r);
 });
 
@@ -272,10 +268,6 @@ $(".klikPlg").on("click",()=>{
             </div>
         </div>
     </div>`;
-
-    // 1. Inject HTML ke DOM terlebih dahulu
     kontainer.html(card);
-
-    // 2. Render Barcode setelah elemen #barcode sudah ada di DOM
     renderBarcode("#barcode", r);
 });

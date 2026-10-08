@@ -1,10 +1,10 @@
 
-const slider = document.querySelector(".wrapperSlider");
-const cardRoute = document.querySelectorAll(".card");
-const koordinat = document.querySelector(".Koordinat");
-const btn = document.querySelector(".back_to_location");
+const slider = $(".wrapperSlider");
+const cardRoute = $(".card");
+const koordinat = $(".Koordinat");
+const btn = $(".back_to_location");
 
-const map = L.map(document.querySelector(".map")).setView([0,0],5);
+const map = L.map($(".map")[0]).setView([0,0],5);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
     maxZoom : 19,
     attribution : '© OpenStreetMap' 
@@ -18,11 +18,12 @@ let latKampusLayo = -3.2185;
 let lngKampusLayo = 104.6492;
 let latKampusBukit = -2.9852; 
 let lngKampusBukit = 104.7321;
+let isFirstLoad = true;
 
 
 
 if(navigator.geolocation){
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
         (Position)=>{
              latitude = Position.coords.latitude;
              longitude = Position.coords.longitude;
@@ -34,14 +35,15 @@ if(navigator.geolocation){
            marker = L.marker([latitude,longitude]).addTo(map).bindPopup("Your Location");
            circle = L.circle([latitude,longitude],{radius : akurasi}).addTo(map);
 
-           setView([latitude,longitude],18).addTo(map);
-
-
+           if(isFirstLoad){
+               map.flyTo([latitude,longitude],18,{duration : 1.5});
+               isFirstLoad = false;
+           }
             
-
-            koordinat.innerHTML = `<p class = "text-[12px] ml-[20px]">Latitude = ${latitude}</p> 
-                                   <p class = "text-[12px] ml-[20px]"> Longitude = ${longitude}</p>            
-                                  `;
+              $(".Koordinat").html(`
+                <p class = "text-black">Latitude = ${latitude}</p>
+                <p class= "text-black">Longitude = ${longitude}</p>
+                `);
  
 
         } ,(eror)=>{
@@ -54,7 +56,7 @@ if(navigator.geolocation){
 
 
 
-btn.addEventListener("click",()=>{
+$(".back_to_location").on("click",()=>{
     if(latitude != null && longitude != null){
         map.flyTo([latitude,longitude],19,{duration : 1.5});
     }else{
@@ -87,15 +89,15 @@ function routes(latTujuan,lngTujuan, warna){
     }
 }
 
-btnIndralaya.addEventListener("click",()=>{
-    slider.classList.remove("translate-x-full");
-    slider.classList.add("translate-x-0");
+$(cardRoute[0]).on("click",()=>{
+    slider.removeClass("translate-x-full");
+    slider.addClass("translate-x-0");
     routes(latKampusLayo,lngKampusLayo,"blue");
 })
 
-btnBukit.addEventListener("click",()=>{
-    slider.classList.remove("translate-x-0")
-    slider.classList.add("translate-x-full");
+$(cardRoute[1]).on("click",()=>{
+    slider.removeClass("translate-x-0")
+    slider.addClass("translate-x-full");
     routes(latKampusBukit,lngKampusBukit,"blue");
 })
 
