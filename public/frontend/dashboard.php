@@ -5,6 +5,7 @@
 </head>
 <body>
     <?php include 'navbarDashboard.php';?>
+    <h1 class="">INI ADALAH DASHBOARD</h1>
     
 </body>
 </html>

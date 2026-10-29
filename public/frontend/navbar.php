@@ -43,6 +43,7 @@ $linkClass = 'nav-link relative text-slate-600 hover:text-amber-500 transition-c
                 <div class="bg-white shadow-lg border border-slate-100 rounded-xl p-2 space-y-1">
                     <a href="login.php" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-500 rounded-lg transition-colors">Logout</a>
                     <a href="login.php#register" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-500 rounded-lg transition-colors">Create new account</a>
+                    <a href="dashboard.php" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-500 rounded-lg transition-colors">Dashboard</a>
                 </div>
             </div>
         </div>
