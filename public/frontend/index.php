@@ -24,14 +24,11 @@
                          alt="Bus DAMRI Universitas Sriwijaya" 
                          class="w-full h-full object-cover object-right"
                          />
-              
                     <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-40% to-transparent"></div>
                     
-                  
                     <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
                 </div>
             </div>
-
        
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -49,8 +46,7 @@
                         <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg">
                             Layanan pemesanan tiket bus DAMRI khusus untuk mahasiswa Universitas Sriwijaya. Pesan tiket mudah, cepat, dan aman.
                         </p>
-
-                 
+     
                         <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
                             <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/90 backdrop-blur-sm border border-slate-100 shadow-sm">
                                 <div class="w-9 h-9 rounded-full bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0">
@@ -78,14 +74,12 @@
             </div>
         </section>
 
-
         <section id="pesan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-7">
                 <h3 class="text-lg font-bold text-damri-navy mb-5">Pesan Tiket Bus</h3>
 
                 <form id="ticketSearchForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 gap-4 items-end">
-                    
-                   
+                       
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Dari</label>
                         <div class="relative">
@@ -99,7 +93,6 @@
                         </div>
                     </div>
 
-           
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Tujuan</label>
                         <div class="relative">
@@ -112,7 +105,6 @@
                             <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
                         </div>
                     </div>
-
                  
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Jam Pemberangkat</label>
@@ -121,7 +113,6 @@
                             <input type="hour" id="dateInput" value="2026-10-25" class="w-full pl-10 pr-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer">
                         </div>
                     </div>
-
            
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Jumlah Penumpang</label>
@@ -135,15 +126,119 @@
                             <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
                         </div>
                     </div>
-
            
                     <div class="lg:col-span-1">
                         <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-1.5">
                             <a href = "cariTiket.php">Cari Tiket</a>
                         </button>
                     </div>
-
                 </form>
+            </div>
+        </section>
+
+        <!-- Bagian Rute dan Map -->
+        <section id="rute" class="py-16 bg-slate-50/70 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-center mb-8 gap-4">
+                    <div class = "flex flex-col justify-center items-center">
+                        <h2 class="text-2xl font-bold text-damri-navy">Rute Damri Unsri</h2>
+                        <p class="text-xs text-slate-500 mt-1">Menghubungkan antara Kampus Bukit dan Kampus Indralaya</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-blue-50 text-damri-navy font-bold text-[11px] rounded-full">Rute tol Palindra</span>
+                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
+                                <p class="text-xs text-slate-400">Penjemputan Kumpul Halte Bukit</p>
+                            </div>
+                            <div class="flex-grow flex items-center justify-center px-2">
+                                <div class="h-0.5 bg-slate-200 w-full relative">
+                                    <i class="fa-solid fa-bus text-damri-navy text-xs absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-1"></i>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
+                                <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <a href="#pesan" class="font-bold text-damri-navy relative hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-amber-50 text-amber-600 font-bold text-[11px] rounded-full">Rute tol Palindra</span>
+                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
+                                <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
+                            </div>
+                            <div class="flex-grow flex items-center justify-center px-2">
+                                <div class="h-0.5 bg-slate-200 w-full relative">
+                                    <i class="fa-solid fa-bus text-amber-500 text-xs absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-1"></i>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
+                                <p class="text-xs text-slate-400">Halte Bukit</p>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <a href="#pesan" class="font-bold text-damri-navy hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Lokasi Kampus -->
+        <section id="lokasi" class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+                    <span class="px-3 py-1 bg-amber-100 text-amber-700 font-bold text-xs rounded-full inline-block">Lokasi</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-damri-navy">Titik Kampus UNSRI</h2>
+                    <p class="text-xs text-slate-500">Lihat lokasi Kampus Indralaya dan Kampus Bukit Palembang.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-4 sm:p-6 space-y-4">
+                    <!-- Tombol pilih lokasi -->
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" data-lokasi="indralaya"
+                            class="btn-lokasi px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 bg-damri-navy text-white transition-colors">
+                            <i class="fa-solid fa-location-dot mr-1"></i> Kampus Indralaya
+                        </button>
+                        <button type="button" data-lokasi="bukit"
+                            class="btn-lokasi px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 bg-slate-50 text-slate-700 transition-colors">
+                            <i class="fa-solid fa-location-dot mr-1"></i> Kampus Bukit
+                        </button>
+                    </div>
+
+                    <!-- Peta (embed Google Maps) -->
+                    <div class="w-full h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
+                        <iframe id="mapFrame"
+                            src="https://maps.google.com/maps?q=Universitas+Sriwijaya+Indralaya&output=embed"
+                            class="w-full h-full border-0"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="map.php" class="inline-flex items-center gap-2 text-xs font-bold text-damri-navy hover:underline">
+                            <i class="fa-solid fa-location-crosshairs text-amber-500"></i> Buka Peta Real-Time Bus
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -192,78 +287,11 @@
                             <p class="text-xs text-slate-500 leading-relaxed">Layanan pelanggan siap membantu Anda.</p>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
     </main>
-
-    <section id="rute" class="py-16 bg-slate-50/70 border-y border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row md:items-center justify-center mb-8 gap-4">
-                    <div class = "flex flex-col justify-center items-center">
-                        <h2 class="text-2xl font-bold text-damri-navy">Rute Damri Unsri</h2>
-                        <p class="text-xs text-slate-500 mt-1">Menghubungkan antara Kampus Bukit dan Kampus Indralaya</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 bg-blue-50 text-damri-navy font-bold text-[11px] rounded-full">Rute tol Palindra</span>
-                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div>
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
-                                <p class="text-xs text-slate-400">Penjemputan Kumpul Halte Bukit</p>
-                            </div>
-                            <div class="flex-grow flex items-center justify-center px-2">
-                                <div class="h-0.5 bg-slate-200 w-full relative">
-                                    <i class="fa-solid fa-bus text-damri-navy text-xs absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-1"></i>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
-                                <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
-                            </div>
-                        </div>
-                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                            <a href="#pesan" class="font-bold text-damri-navy relative hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-                        </div>
-                    </div>
-
-              
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 bg-amber-50 text-amber-600 font-bold text-[11px] rounded-full">Rute tol Palindra</span>
-                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div>
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
-                                <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
-                            </div>
-                            <div class="flex-grow flex items-center justify-center px-2">
-                                <div class="h-0.5 bg-slate-200 w-full relative">
-                                    <i class="fa-solid fa-bus text-amber-500 text-xs absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-1"></i>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
-                                <p class="text-xs text-slate-400">Halte Bukit</p>
-                            </div>
-                        </div>
-                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                            <a href="#pesan" class="font-bold text-damri-navy hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="interior" class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -273,9 +301,7 @@
                     <p class="text-xs text-slate-500">Rasakan pengalaman perjalanan kampus yang bersih, aman, dan nyaman dengan berbagai fasilitas penunjang.</p>
                 </div>
 
-            
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
                     
                     <div class="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all">
                         <div class="h-52 overflow-hidden relative">
@@ -293,7 +319,6 @@
                             </p>
                         </div>
                     </div>
-
                   
                     <div class="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all">
                         <div class="h-52 overflow-hidden relative">
@@ -315,7 +340,6 @@
                             </p>
                         </div>
                     </div>
-
                 
                     <div class="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all sm:col-span-2 lg:col-span-1">
                         <div class="h-52 overflow-hidden relative">
@@ -389,7 +413,6 @@
         </section>
     </main>
 
-
     <footer id="kontak" class="bg-damri-navy pt-12 pb-6 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
@@ -456,5 +479,7 @@
         <i class="fa-solid fa-circle-check text-emerald-400"></i>
         <span id="toastMsg">Notifikasi</span>
     </div>
+
+    <script src="js/mapLandingPage.js"></script>
 </body>
 </html>
