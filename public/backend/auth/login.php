@@ -12,7 +12,7 @@ function backWithError(string $msg, string $page): void {
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: $loginPage");
+    header("Location: $loginPage"); 
     exit;
 }
 

@@ -1,0 +1,15 @@
+{
+  "name": "damri-unsri",
+  "version": "1.0.0",
+  "description": "MBG",
+  "main": "index.js",
+  "scripts": {
+    "DAMRI": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3"
+  }
+}

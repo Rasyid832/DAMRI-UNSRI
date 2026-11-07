@@ -235,7 +235,7 @@
                     <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-3 py-1 bg-blue-50 text-damri-navy font-bold text-[11px] rounded-full">Rute tol Palindra</span>
-                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
+                            <span class="text-amber-500 font-extrabold text-sm">Rp 15.000</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div>
@@ -261,7 +261,7 @@
                     <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-3 py-1 bg-amber-50 text-amber-600 font-bold text-[11px] rounded-full">Rute tol Palindra</span>
-                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
+                            <span class="text-amber-500 font-extrabold text-sm">Rp 15.000</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div>
@@ -285,6 +285,159 @@
                 </div>
             </div>
         </section>
+
+                <section id="jadwal" class="py-16 bg-slate-100">
+        <div class="max-w-xl mx-auto px-4 sm:px-6">
+        
+            <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-700 font-bold text-xs rounded-full inline-block">Jadwal</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-damri-navy">Operasional DAMRI UNSRI</h2>
+                        <p class="text-xs text-slate-500">Jadwal DAMRI UNSRI berlaku Senin - Jumat.</p>
+                    </div>
+
+            <div class="relative flex mb-8 bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div id="tabIndicator" class="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-0.375rem)] bg-damri-navy rounded-xl transition-transform duration-300 ease-in-out shadow"></div>
+    
+                <button id="tabBukit" type="button" class="relative z-10 flex-1 py-2.5 text-center font-bold text-xs text-white transition-colors duration-300">
+                    Bukit → Indralaya
+                </button>
+                
+                <button id="tabIndralaya" type="button" class="relative z-10 flex-1 py-2.5 text-center font-bold text-xs text-slate-500 hover:text-slate-700 transition-colors duration-300">
+                    Indralaya → Bukit
+                </button>
+            </div>
+
+            <!-- TIMELINE 1: Bukit -> Indralaya -->
+            <div id="timelineBukit" class="relative border-l-2 border-slate-200 ml-4 space-y-5">
+                <div class="jadwal-item relative pl-6" data-time="06:15">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">06.15 - 07.00 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="07:00">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">07.00 - 07.45 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="08:00">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">08.00 - 08.45 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="10:15">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">10.15 - 11.00 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="12:15">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">12.15 - 13.00 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="14:00">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">14.00 - 14.45 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIMELINE 2: Indralaya -> Bukit (Default hidden) -->
+            <div id="timelineIndralaya" class="relative border-l-2 border-slate-200 ml-4 space-y-5 hidden">
+                <div class="jadwal-item relative pl-6" data-time="06:30">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">06.30 - 07.15 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="07:15">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">07.15 - 08.00 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="07:35">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">08.00 - 08.45 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="11:00">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">11.00 - 11.45 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="13:00">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">13.00 - 13.45 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+                <div class="jadwal-item relative pl-6" data-time="16:15">
+                    <div class="dot absolute -left-[9px] top-4 w-4 h-4 rounded-full bg-slate-300 border-2 border-white transition-all"></div>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-2">
+                        <div class="space-y-1">
+                            <span class="font-bold text-slate-800 text-sm block">16.15 - 17.00 WIB</span>
+                            <span class="status-badge hidden text-[10px] px-2.5 py-0.5 rounded-full font-bold"></span>
+                        </div>
+                        <a href="#pesan" class="px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors shrink-0">Pesan Tiket</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <script src="js/jadwal.js"></script>
 
         <section id="interior" class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
