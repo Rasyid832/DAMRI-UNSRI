@@ -10,6 +10,12 @@ const role = $(".roleInput");
 driver.on("click",sliderDriver);
 mahasiswa.on("click", sliderMahasiswa);
 
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash === '#register') {
+        sliderSignup();
+    }
+});
+
 function sliderMahasiswa(){
     slider.removeClass("translate-x-full");
     slider.addClass("translate-x-0");

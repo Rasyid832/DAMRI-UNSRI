@@ -38,5 +38,5 @@ $_SESSION['user_id'] = $user['id'];
 $_SESSION['nama']    = $user['nama'];
 $_SESSION['role']    = $user['role'];
 
-header('Location: ../../frontend/dashboard.php');
+header('Location: ../../frontend/index.php');
 exit;
