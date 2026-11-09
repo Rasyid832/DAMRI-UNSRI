@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
                         damri: {
@@ -33,4 +33,5 @@
                 }
             }
         }
+
     </script>

@@ -1,211 +1,177 @@
-$(document).ready(function () {
-    // Bangun objek HALTE secara dinamis dari atribut data-short di dropdown #asalSelect
-    const HALTE = {};
-    $('#asalSelect option').each(function () {
-        HALTE[this.value] = $(this).data('short');
-    });
-    const shortName = (v) => HALTE[v] || v;
+        const BKT = 'Halte Unsri Bukit';
+        const IDL = 'Terminal Unsri Indralaya';
+        const singkatan = { 'Halte Unsri Bukit': 'Bukit', 'Terminal Unsri Indralaya': 'Indralaya' };
 
-    const TAB_ACTIVE   = ['bg-navy', 'text-white'];
-    const TAB_IDLE     = ['text-slate-600', 'hover:bg-slate-100'];
-    const SEAT_IDLE    = 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100';
-    const SEAT_ACTIVE  = 'bg-amber-500 text-slate-900 border-amber-600 hover:bg-amber-400';
+        const defaultBuses = [
+            { id: 1, asal: BKT, tujuan: IDL, jam: '06:00', tiba: '06:45', sisa: 0,  durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Dalam perjalanan', color: 'bg-emerald-500' },
+            { id: 2, asal: BKT, tujuan: IDL, jam: '07:00', tiba: '07:45', sisa: 8,  durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Dalam perjalanan', color: 'bg-emerald-500' },
+            { id: 3, asal: BKT, tujuan: IDL, jam: '08:00', tiba: '08:45', sisa: 15, durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Menunggu keberangkatan', color: 'bg-slate-400' },
+            { id: 4, asal: BKT, tujuan: IDL, jam: '10:00', tiba: '10:45', sisa: 40, durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Menunggu keberangkatan', color: 'bg-slate-400' },
+            { id: 5, asal: IDL, tujuan: BKT, jam: '06:30', tiba: '07:15', sisa: 0,  durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Dalam perjalanan', color: 'bg-emerald-500' },
+            { id: 6, asal: IDL, tujuan: BKT, jam: '07:30', tiba: '08:15', sisa: 12, durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Menunggu keberangkatan', color: 'bg-slate-400' },
+            { id: 7, asal: IDL, tujuan: BKT, jam: '13:30', tiba: '14:15', sisa: 33, durasi: 45, via: 'Via Tol Palindra', harga: 'Rp 15.000', status: 'Menunggu keberangkatan', color: 'bg-slate-400' }
+        ];
 
-    let selectedBus = null;
-    let selectedSeatNum = '';
-    let activeStatusFilter = 'all'; 
+        let selectedBus = null;
 
-    function openModal(sel)  { $(sel).fadeIn(200).css('display', 'flex'); $('body').addClass('overflow-hidden'); }
-    function closeModal(sel) { $(sel).fadeOut(150); $('body').removeClass('overflow-hidden'); }
-
-    function syncRouteOptions(changed) {
-        const $asal = $('#asalSelect');
-        const $tujuan = $('#tujuanSelect');
-
-        if ($asal.val() === $tujuan.val()) {
-            const $other = changed === 'asal' ? $tujuan : $asal;
-            const pivot = changed === 'asal' ? $asal.val() : $tujuan.val();
-            const alt = $other.find('option').filter(function () { return this.value !== pivot; }).first().val();
-            $other.val(alt);
+        if (!sessionStorage.getItem('damri_buses_temp')) {
+            sessionStorage.setItem('damri_buses_temp', JSON.stringify(defaultBuses));
         }
 
-        $tujuan.find('option').prop('disabled', false).filter(function () { return this.value === $asal.val(); }).prop('disabled', true);
-        $asal.find('option').prop('disabled', false).filter(function () { return this.value === $tujuan.val(); }).prop('disabled', true);
-    }
+        function getBusesData() {
+            let storedBuses = sessionStorage.getItem('damri_buses_temp');
+            return storedBuses ? JSON.parse(storedBuses) : defaultBuses;
+        }
 
-    function applyAllFilters() {
-        const asal = $('#asalSelect').val();
-        const tujuan = $('#tujuanSelect').val();
-        const jamDipilih = $('#jamInput').val(); 
+        // Fungsi Utama Menampilkan Bus (Menggunakan Flexbox Penuh, Tanpa Grid)
+        function renderBuses() {
+            let asal = $('#asalSelect').val();
+            let tujuan = $('#tujuanSelect').val();
+            let jam = $('#jamInput').val();
 
-        const count = { all: 0, tersedia: 0, penuh: 0 };
-        let visible = 0;
+            let buses = getBusesData();
 
-        $('.bus-card').each(function () {
-            const $card = $(this);
-            const status = $card.attr('data-status');
-            const jamBus = String($card.attr('data-jam')).slice(0, 2);
+            let filtered = buses.filter(b => {
+                return b.asal === asal && b.tujuan === tujuan && (!jam || b.jam.startsWith(jam));
+            });
 
-            const lolosRute = $card.attr('data-asal') === asal && $card.attr('data-tujuan') === tujuan;
-            const lolosJam = !jamDipilih || jamBus === jamDipilih;
-            const lolosStatus = activeStatusFilter === 'all' || status === activeStatusFilter;
-
-            if (lolosRute && lolosJam) {
-                count.all++;
-                count[status]++;
+            $('#resultSubtitle').text(`Menampilkan ${filtered.length} jadwal bus`);
+            
+            if (filtered.length === 0) {
+                $('#busListContainer').html('<p class="p-6 text-center text-sm text-slate-500 font-medium">Tidak ada jadwal yang sesuai.</p>');
+                return;
             }
 
-            const tampil = lolosRute && lolosJam && lolosStatus;
-            $card.toggle(tampil);
-            if (tampil) visible++;
+            $('#busListContainer').html(filtered.map(b => {
+                let isFull = b.sisa === 0;
+                return `
+                <article class="bus-card p-4 sm:p-6 hover:bg-slate-50 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    
+                    <!-- Kiri: Jam & Rute -->
+                    <div class="flex items-center gap-4 flex-1">
+                        <div class="flex flex-col">
+                            <p class="text-xl font-bold text-slate-900">${b.jam}</p>
+                            <p class="text-xs font-semibold text-slate-500">${singkatan[b.asal]}</p>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center px-2">
+                            <p class="text-xs font-bold text-amber-700">${b.durasi} menit</p>
+                            <div class="my-1.5 h-px bg-slate-300 w-full relative"></div>
+                            <p class="text-xs text-slate-400">${b.via}</p>
+                        </div>
+                        <div class="flex flex-col text-right lg:text-left">
+                            <p class="text-xl font-bold text-slate-900">${b.tiba}</p>
+                            <p class="text-xs font-semibold text-slate-500">${singkatan[b.tujuan]}</p>
+                        </div>
+                    </div>
+
+                    <!-- Tengah 1: Status Bus -->
+                    <div class="flex flex-col min-w-[160px]">
+                        <p class="font-bold text-slate-800">DAMRI Executive</p>
+                        <p class="text-sm text-slate-500 font-medium flex items-center gap-1.5 mt-0.5">
+                            <span class="h-1.5 w-1.5 rounded-full ${b.color}"></span>${b.status}
+                        </p>
+                    </div>
+
+                    <!-- Tengah 2: Kursi -->
+                    <div class="flex flex-col min-w-[140px]">
+                        <p class="text-sm font-bold ${isFull ? 'text-red-700' : 'text-emerald-700'}">${isFull ? 'Penuh' : 'Sisa ' + b.sisa + ' kursi'}</p>
+                        <div class="mt-1.5 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full ${isFull ? 'bg-red-500' : 'bg-emerald-500'}" style="width: ${(b.sisa/40)*100}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Kanan: Harga & Tombol -->
+                    <div class="flex flex-row lg:flex-col justify-between items-center lg:items-end border-t lg:border-t-0 pt-3 lg:pt-0 border-slate-100 gap-2">
+                        <p class="text-lg font-bold text-amber-700">${b.harga}</p>
+                        <div class="flex items-center gap-2">
+                            <a href="detailTiket.php?asal=${encodeURIComponent(b.asal)}&tujuan=${encodeURIComponent(b.tujuan)}&jam=${b.jam}" 
+                                class="h-10 px-3 rounded-md text-sm font-semibold border border-slate-300 text-slate-700 hover:bg-slate-100 flex items-center justify-center gap-1.5 transition-colors">
+                                <i class="fa-solid fa-map-location-dot text-blue-600 text-xs"></i> Detail
+                            </a>
+                            <button type="button" ${isFull ? 'disabled' : ''} 
+                                data-bus-id='${b.id}'
+                                class="pesan-btn h-10 w-[140px] px-4 rounded-md text-sm font-bold shadow-sm transition-all ${isFull ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-damri-navyLight text-white hover:bg-damri-navy'}">
+                                ${isFull ? 'Penuh' : 'Pesan tiket'}
+                            </button>
+                        </div>
+                    </div>
+
+                </article>`;
+            }).join(''));
+        }
+
+        // Event Listeners
+        $('#asalSelect, #tujuanSelect, #jamInput').on('change', renderBuses);
+
+        $('#swapRouteBtn').on('click', function() {
+            let a = $('#asalSelect').val();
+            $('#asalSelect').val($('#tujuanSelect').val());
+            $('#tujuanSelect').val(a);
+            renderBuses();
         });
 
-        $('.bus-card').removeClass('is-last');
-        $('.bus-card:visible').last().addClass('is-last');
+        // Pesan Tiket
+        $(document).on('click', '.pesan-btn', function() {
+            let busId = $(this).data('bus-id');
+            let buses = getBusesData();
+            selectedBus = buses.find(b => b.id == busId);
 
-        $('.filter-tab').each(function () {
-            const f = $(this).data('filter');
-            const label = f === 'all' ? 'Semua' : f === 'tersedia' ? 'Tersedia' : 'Penuh';
-            $(this).text(`${label} (${count[f]})`);
+            if(selectedBus) {
+                $('#paymentPrice').text(selectedBus.harga);
+                $('#paymentModal').css('display', 'flex');
+            }
         });
 
-        const labelStatus = activeStatusFilter === 'tersedia' ? ' tersedia'
-                          : activeStatusFilter === 'penuh' ? ' penuh' : '';
-        const rentang = jamDipilih ? `berangkat pukul ${jamDipilih}:00 - ${jamDipilih}:59 WIB` : 'semua jam keberangkatan';
-        $('#resultTitle').text(`${visible} jadwal bus${labelStatus}`);
-        $('#resultSubtitle').text(`${asal} ke ${tujuan}, ${rentang}`);
+        // Konfirmasi Pembayaran
+        $('#confirmPaymentBtn').on('click', function() {
+            let selectedMethod = $('input[name="metode"]:checked').val();
+            $('#paymentModal').hide();
 
-        $('#emptyStateNotice').remove();
-        if (visible === 0) {
-            const rute = `${shortName(asal)} ke ${shortName(tujuan)}`;
-            const jamTeks = jamDipilih ? ` pada pukul ${jamDipilih}:00 - ${jamDipilih}:59 WIB` : '';
-            let judul, pesan;
-
-            if (count.all === 0) {
-                judul = 'Tidak ada jadwal';
-                pesan = `Belum ada bus ${rute}${jamTeks}. Coba pilih jam lain.`;
-            } else if (activeStatusFilter === 'penuh') {
-                judul = 'Tidak ada bus yang penuh';
-                pesan = `Semua bus ${rute}${jamTeks} masih punya kursi kosong.`;
-            } else {
-                judul = 'Semua bus sudah penuh';
-                pesan = `Tidak ada bus ${rute}${jamTeks} dengan kursi kosong. Coba pilih jam lain.`;
+            let buses = getBusesData();
+            let targetBus = buses.find(b => b.id == selectedBus.id);
+            if(targetBus && targetBus.sisa > 0) {
+                targetBus.sisa -= 1;
+                sessionStorage.setItem('damri_buses_temp', JSON.stringify(buses));
             }
 
-            $('#busListContainer').append(`
-                <div id="emptyStateNotice" class="px-6 py-12 text-center">
-                    <i class="fa-regular fa-calendar-xmark mb-3 text-3xl text-slate-300"></i>
-                    <h3 class="font-semibold text-slate-900">${judul}</h3>
-                    <p class="mx-auto mt-1 max-w-sm text-sm text-slate-500">${pesan}</p>
-                    <button type="button" id="resetFilterBtn" class="mt-4 h-10 rounded-md border border-slate-300 px-4 text-sm font-medium text-slate-700 hover:bg-slate-50">
-                        Reset jam dan status
-                    </button>
-                </div>
-            `);
-        }
-    }
+            let kodeTiket = 'DMR-' + Math.floor(100000 + Math.random() * 900000);
 
-    function setActiveTab(filter) {
-        activeStatusFilter = filter;
-        $('.filter-tab')
-            .removeClass(TAB_ACTIVE.join(' ')).addClass(TAB_IDLE.join(' '))
-            .attr('aria-selected', 'false');
-        $(`.filter-tab[data-filter="${filter}"]`)
-            .removeClass(TAB_IDLE.join(' ')).addClass(TAB_ACTIVE.join(' '))
-            .attr('aria-selected', 'true');
-    }
+            let tiketBaru = {
+                kode: kodeTiket,
+                asal: selectedBus.asal,
+                tujuan: selectedBus.tujuan,
+                jam: selectedBus.jam,
+                harga: selectedBus.harga,
+                metode: selectedMethod,
+                tanggal: new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+            };
 
-    $('#asalSelect').on('change', function () { syncRouteOptions('asal'); applyAllFilters(); });
-    $('#tujuanSelect').on('change', function () { syncRouteOptions('tujuan'); applyAllFilters(); });
+            let historyList = JSON.parse(localStorage.getItem('damri_history')) || [];
+            historyList.unshift(tiketBaru);
+            localStorage.setItem('damri_history', JSON.stringify(historyList));
 
-    $('#swapRouteBtn').on('click', function () {
-        const a = $('#asalSelect').val();
-        const t = $('#tujuanSelect').val();
-        $('#asalSelect option, #tujuanSelect option').prop('disabled', false);
-        $('#asalSelect').val(t);
-        $('#tujuanSelect').val(a);
-        syncRouteOptions('asal');
-        applyAllFilters();
-    });
+            $('#ticketCodeText').text(kodeTiket);
+            $('#ticketAsal').text(singkatan[selectedBus.asal]);
+            $('#ticketTujuan').text(singkatan[selectedBus.tujuan]);
+            $('#ticketJam').text(selectedBus.jam);
+            $('#ticketMetode').text(selectedMethod);
+            
+            JsBarcode("#barcodeElement", kodeTiket, {
+                format: "CODE128",
+                lineColor: "black",
+                width: 2,
+                height: 50,
+                displayValue: false
+            });
 
-    $('#jamInput').on('change', applyAllFilters);
-    $('#searchForm').on('submit', function (e) { e.preventDefault(); applyAllFilters(); });
+            $('#ticketDetailModal').css('display', 'flex');
+            renderBuses();
+        });
 
-    $('.filter-tab').on('click', function () {
-        setActiveTab($(this).data('filter'));
-        applyAllFilters();
-    });
+        $('#closePaymentModalBtn').on('click', () => $('#paymentModal').hide());
+        $('#closeTicketModalBtn, #finishTicketBtn').on('click', () => {
+            $('#ticketDetailModal').hide();
+        });
 
-    $(document).on('click', '#resetFilterBtn', function () {
-        $('#jamInput').val('');
-        setActiveTab('all');
-        applyAllFilters();
-    });
-
-    function resetSeatSelection() {
-        selectedSeatNum = '';
-        $('.seat-btn').removeClass(SEAT_ACTIVE).addClass(SEAT_IDLE);
-        $('#selectedSeatLabel').text('Belum dipilih').removeClass('text-red-600').addClass('text-slate-900');
-    }
-
-    $('.btn-pilih-kursi').on('click', function () {
-        selectedBus = {
-            nama:   $(this).data('bus'),
-            asal:   $(this).data('asal'),
-            tujuan: $(this).data('tujuan'),
-            jam:    $(this).data('jam'),
-            harga:  $(this).data('harga')
-        };
-        resetSeatSelection();
-
-        $('#modalBusName').text(selectedBus.nama);
-        $('#modalBusDetail').text(
-            `${shortName(selectedBus.asal)} → ${shortName(selectedBus.tujuan)}, ${selectedBus.jam} WIB, ${selectedBus.harga}`
-        );
-        openModal('#seatModal');
-    });
-
-    $('#closeSeatModalBtn').on('click', function () { closeModal('#seatModal'); });
-
-    $('.seat-btn').on('click', function () {
-        $('.seat-btn').removeClass(SEAT_ACTIVE).addClass(SEAT_IDLE);
-        $(this).removeClass(SEAT_IDLE).addClass(SEAT_ACTIVE);
-
-        selectedSeatNum = $(this).data('seat');
-        $('#selectedSeatLabel').text(`Kursi ${selectedSeatNum}`).removeClass('text-red-600').addClass('text-slate-900');
-    });
-
-    $('#processPaymentBtn').on('click', function () {
-        if (!selectedSeatNum) {
-            $('#selectedSeatLabel').text('Pilih kursi dulu').removeClass('text-slate-900').addClass('text-red-600');
-            return;
-        }
-
-        closeModal('#seatModal');
-
-        const randomCode = 'DMR-' + Math.floor(100000 + Math.random() * 900000);
-
-        $('#ticketCodeText').text(randomCode);
-        $('#ticketBus').text(selectedBus.nama);
-        $('#ticketAsal').text(selectedBus.asal);
-        $('#ticketTujuan').text(selectedBus.tujuan);
-        $('#ticketJam').text(selectedBus.jam + ' WIB');
-        $('#ticketKursi').text(selectedSeatNum);
-        $('#ticketHarga').text(selectedBus.harga);
-
-        openModal('#ticketDetailModal');
-    });
-
-    $('#closeTicketModalBtn, #finishTicketBtn').on('click', function () { closeModal('#ticketDetailModal'); });
-
-    $('#seatModal, #ticketDetailModal').on('click', function (e) {
-        if (e.target === this) closeModal('#' + this.id);
-    });
-    $(document).on('keydown', function (e) {
-        if (e.key === 'Escape') { closeModal('#seatModal'); closeModal('#ticketDetailModal'); }
-    });
-
-    syncRouteOptions('asal');
-    setActiveTab('all');
-    applyAllFilters();
-});
+        // Jalankan saat pertama buka
+        renderBuses();
